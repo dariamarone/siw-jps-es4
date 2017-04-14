@@ -1,4 +1,4 @@
-package museo;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +6,15 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-public class Stanza {
+public class Artista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
-	private String piano;
-	
-	@OneToMany
+	@ManyToMany
 	private List<Opera> opere;
-	@ManyToOne
-	private Curatore curatore;
 	
-	public Stanza(){
+	public Artista(){
 		this.opere = new ArrayList<>();
 	}
 
@@ -30,20 +26,12 @@ public class Stanza {
 		this.id = id;
 	}
 
-	public String getMane() {
+	public String getName() {
 		return name;
 	}
 
-	public void setMane(String mane) {
-		this.name = mane;
-	}
-
-	public String getPiano() {
-		return piano;
-	}
-
-	public void setPiano(String piano) {
-		this.piano = piano;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Opera> getOpere() {
@@ -53,14 +41,5 @@ public class Stanza {
 	public void setOpere(List<Opera> opere) {
 		this.opere = opere;
 	}
-
-	public Curatore getCuratore() {
-		return curatore;
-	}
-
-	public void setCuratore(Curatore curatore) {
-		this.curatore = curatore;
-	}
-	
 
 }
